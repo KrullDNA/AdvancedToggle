@@ -270,10 +270,8 @@ class Toggle_Widget extends Widget_Base {
 					'dashed'  => __( 'Dashed', 'advanced-toggle' ),
 					'groove'  => __( 'Groove', 'advanced-toggle' ),
 				],
-				'selectors' => [
-					'{{WRAPPER}} .adv-toggle__item' => 'border-style: {{VALUE}};',
-				],
 				'prefix_class' => 'adv-toggle--border-',
+				'render_type'  => 'template',
 			]
 		);
 
