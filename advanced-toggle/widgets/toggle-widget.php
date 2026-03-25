@@ -44,6 +44,15 @@ class Toggle_Widget extends Widget_Base {
 		return [ 'advanced-toggle-frontend' ];
 	}
 
+	/**
+	 * Atomic / optimized markup support.
+	 * When Elementor's e_optimized_markup experiment is active,
+	 * skip the inner wrapper div to reduce DOM nodes.
+	 */
+	public function has_widget_inner_wrapper(): bool {
+		return ! \Elementor\Plugin::instance()->experiments->is_feature_active( 'e_optimized_markup' );
+	}
+
 	protected function register_controls() {
 		$this->register_content_controls();
 		$this->register_style_controls();
