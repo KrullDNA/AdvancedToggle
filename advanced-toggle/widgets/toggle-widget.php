@@ -44,6 +44,15 @@ class Toggle_Widget extends Widget_Base {
 		return [ 'advanced-toggle-frontend' ];
 	}
 
+	/**
+	 * Atomic / optimized markup support.
+	 * When Elementor's e_optimized_markup experiment is active,
+	 * skip the inner wrapper div to reduce DOM nodes.
+	 */
+	public function has_widget_inner_wrapper(): bool {
+		return ! \Elementor\Plugin::instance()->experiments->is_feature_active( 'e_optimized_markup' );
+	}
+
 	protected function register_controls() {
 		$this->register_content_controls();
 		$this->register_style_controls();
@@ -718,6 +727,30 @@ class Toggle_Widget extends Widget_Base {
 			[
 				'label' => __( 'Open / Close Icon', 'advanced-toggle' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'nav_icon_size',
+			[
+				'label'      => __( 'Size', 'advanced-toggle' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em' ],
+				'range'      => [
+					'px' => [
+						'min' => 6,
+						'max' => 100,
+					],
+					'em' => [
+						'min' => 0.5,
+						'max' => 6,
+						'step' => 0.1,
+					],
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .adv-toggle__icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .adv-toggle__icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
