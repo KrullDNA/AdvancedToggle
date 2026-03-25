@@ -730,6 +730,30 @@ class Toggle_Widget extends Widget_Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'nav_icon_size',
+			[
+				'label'      => __( 'Size', 'advanced-toggle' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em' ],
+				'range'      => [
+					'px' => [
+						'min' => 6,
+						'max' => 100,
+					],
+					'em' => [
+						'min' => 0.5,
+						'max' => 6,
+						'step' => 0.1,
+					],
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .adv-toggle__icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .adv-toggle__icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->add_control(
 			'nav_icon_spacing',
 			[
