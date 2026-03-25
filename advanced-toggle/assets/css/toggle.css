@@ -88,3 +88,28 @@
 .adv-toggle--icon-right .adv-toggle__item-title-inner {
 	flex: 1;
 }
+
+/* Divider mode: no border on items, only a top-border between items */
+.adv-toggle--border-divider .adv-toggle__item {
+	border: none !important;
+	border-radius: 0 !important;
+}
+
+.adv-toggle--border-divider .adv-toggle__item:not(:first-child) {
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top-color: #e8e8e8;
+}
+
+.adv-toggle--border-divider .adv-toggle__item-content {
+	border-top: none;
+}
+
+/* None mode */
+.adv-toggle--border-none .adv-toggle__item {
+	border: none !important;
+}
+
+.adv-toggle--border-none .adv-toggle__item-content {
+	border-top: none;
+}

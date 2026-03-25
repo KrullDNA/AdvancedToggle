@@ -255,12 +255,115 @@ class Toggle_Widget extends Widget_Base {
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
+		$this->add_control(
+			'item_border_type',
 			[
-				'name'     => 'item_border',
-				'label'    => __( 'Box Border', 'advanced-toggle' ),
-				'selector' => '{{WRAPPER}} .adv-toggle__item',
+				'label'   => __( 'Border Type', 'advanced-toggle' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'solid',
+				'options' => [
+					'none'    => __( 'None', 'advanced-toggle' ),
+					'divider' => __( 'Divider Only', 'advanced-toggle' ),
+					'solid'   => __( 'Solid', 'advanced-toggle' ),
+					'double'  => __( 'Double', 'advanced-toggle' ),
+					'dotted'  => __( 'Dotted', 'advanced-toggle' ),
+					'dashed'  => __( 'Dashed', 'advanced-toggle' ),
+					'groove'  => __( 'Groove', 'advanced-toggle' ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .adv-toggle__item' => 'border-style: {{VALUE}};',
+				],
+				'prefix_class' => 'adv-toggle--border-',
+			]
+		);
+
+		$this->add_control(
+			'item_border_width',
+			[
+				'label'      => __( 'Border Width', 'advanced-toggle' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+				'selectors'  => [
+					'{{WRAPPER}} .adv-toggle__item' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'item_border_type!' => [ 'none', 'divider' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'item_border_color',
+			[
+				'label'     => __( 'Border Color', 'advanced-toggle' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .adv-toggle__item' => 'border-color: {{VALUE}};',
+				],
+				'condition' => [
+					'item_border_type!' => [ 'none', 'divider' ],
+				],
+			]
+		);
+
+		$this->add_control(
+			'divider_style',
+			[
+				'label'   => __( 'Divider Style', 'advanced-toggle' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'solid',
+				'options' => [
+					'solid'  => __( 'Solid', 'advanced-toggle' ),
+					'double' => __( 'Double', 'advanced-toggle' ),
+					'dotted' => __( 'Dotted', 'advanced-toggle' ),
+					'dashed' => __( 'Dashed', 'advanced-toggle' ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .adv-toggle__item:not(:first-child)' => 'border-top-style: {{VALUE}};',
+				],
+				'condition' => [
+					'item_border_type' => 'divider',
+				],
+			]
+		);
+
+		$this->add_control(
+			'divider_width',
+			[
+				'label'      => __( 'Divider Width', 'advanced-toggle' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range'      => [
+					'px' => [
+						'min' => 1,
+						'max' => 10,
+					],
+				],
+				'default'    => [
+					'size' => 1,
+					'unit' => 'px',
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .adv-toggle__item:not(:first-child)' => 'border-top-width: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'item_border_type' => 'divider',
+				],
+			]
+		);
+
+		$this->add_control(
+			'divider_color',
+			[
+				'label'     => __( 'Divider Color', 'advanced-toggle' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#e8e8e8',
+				'selectors' => [
+					'{{WRAPPER}} .adv-toggle__item:not(:first-child)' => 'border-top-color: {{VALUE}};',
+				],
+				'condition' => [
+					'item_border_type' => 'divider',
+				],
 			]
 		);
 
