@@ -39,15 +39,6 @@
 	border: 1px groove #e8e8e8;
 }
 
-/* Content divider for bordered modes */
-.adv-toggle--border-solid .adv-toggle__item-content,
-.adv-toggle--border-double .adv-toggle__item-content,
-.adv-toggle--border-dotted .adv-toggle__item-content,
-.adv-toggle--border-dashed .adv-toggle__item-content,
-.adv-toggle--border-groove .adv-toggle__item-content {
-	border-top: 1px solid #e8e8e8;
-}
-
 .adv-toggle__item-title {
 	display: flex;
 	align-items: center;
@@ -78,6 +69,7 @@
 .adv-toggle__item-content {
 	display: none;
 	padding: 20px;
+	border-top: 1px solid #e8e8e8;
 }
 
 .adv-toggle__item .adv-toggle__icon {
