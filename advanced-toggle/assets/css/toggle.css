@@ -1,0 +1,90 @@
+/* Advanced Toggle Widget Styles */
+.adv-toggle__item-content:after {
+	display: block;
+	clear: both;
+	content: "";
+}
+
+.adv-toggle__wrapper {
+	color: #2b2b2b;
+}
+
+.adv-toggle__item {
+	overflow: hidden;
+	border: 1px solid #e8e8e8;
+	transition: all 0.2s ease-in-out;
+}
+
+.adv-toggle__item:not(:first-child) {
+	margin-top: -1px;
+}
+
+.adv-toggle__item-title {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	padding: 20px;
+	font-weight: 700;
+	line-height: 1;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.adv-toggle__item-title-inner {
+	display: flex;
+	align-items: center;
+}
+
+.adv-toggle__item-title-icon {
+	margin-right: 15px;
+}
+
+.adv-toggle__item-title-icon svg,
+.adv-toggle__item .adv-toggle__icon svg {
+	width: 1em;
+	height: auto;
+	fill: currentColor;
+}
+
+.adv-toggle__item-content {
+	display: none;
+	padding: 20px;
+	border-top: 1px solid #e8e8e8;
+}
+
+.adv-toggle__item .adv-toggle__icon {
+	display: inline-block;
+	font-size: 0.8em;
+	line-height: 1.2em;
+}
+
+/* Icon visibility toggling */
+.adv-toggle__item .adv-toggle__icon--opened,
+.adv-toggle__item--active > span > .adv-toggle__icon--closed {
+	display: none;
+}
+
+.adv-toggle__item--active > span > .adv-toggle__icon--opened {
+	display: inline-block;
+}
+
+/* Icon position: left */
+.adv-toggle--icon-left .adv-toggle__icon {
+	float: left;
+	margin-right: 15px;
+}
+
+/* Icon position: right */
+.adv-toggle--icon-right .adv-toggle__icon {
+	float: right;
+	margin-left: 15px;
+}
+
+.adv-toggle--icon-right .adv-toggle__item-title {
+	flex-direction: row-reverse;
+	justify-content: space-between;
+}
+
+.adv-toggle--icon-right .adv-toggle__item-title-inner {
+	flex: 1;
+}
