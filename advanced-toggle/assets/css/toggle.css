@@ -129,7 +129,3 @@
 	border-top-width: 1px;
 	border-top-color: #e8e8e8;
 }
-
-.adv-toggle--border-divider .adv-toggle__item-content {
-	border-top: none;
-}
