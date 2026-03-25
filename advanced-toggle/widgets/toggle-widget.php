@@ -229,6 +229,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->register_item_style_controls();
 		$this->register_title_style_controls();
 		$this->register_title_icon_style_controls();
+		$this->register_separator_style_controls();
 		$this->register_content_style_controls();
 		$this->register_open_close_icon_style_controls();
 	}
@@ -525,6 +526,30 @@ class Toggle_Widget extends Widget_Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'title_icon_size',
+			[
+				'label'      => __( 'Size', 'advanced-toggle' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em' ],
+				'range'      => [
+					'px' => [
+						'min' => 6,
+						'max' => 100,
+					],
+					'em' => [
+						'min' => 0.5,
+						'max' => 6,
+						'step' => 0.1,
+					],
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .adv-toggle__item-title-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .adv-toggle__item-title-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->add_control(
 			'title_icon_spacing',
 			[
@@ -533,6 +558,77 @@ class Toggle_Widget extends Widget_Base {
 				'size_units' => [ 'px' ],
 				'selectors'  => [
 					'{{WRAPPER}} .adv-toggle__item-title-icon' => 'margin-right: {{SIZE}}px;',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	protected function register_separator_style_controls() {
+		$this->start_controls_section(
+			'_section_separator',
+			[
+				'label' => __( 'Title / Content Separator', 'advanced-toggle' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'separator_style',
+			[
+				'label'   => __( 'Style', 'advanced-toggle' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'solid',
+				'options' => [
+					'none'   => __( 'None', 'advanced-toggle' ),
+					'solid'  => __( 'Solid', 'advanced-toggle' ),
+					'double' => __( 'Double', 'advanced-toggle' ),
+					'dotted' => __( 'Dotted', 'advanced-toggle' ),
+					'dashed' => __( 'Dashed', 'advanced-toggle' ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .adv-toggle__item-content' => 'border-top-style: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'separator_width',
+			[
+				'label'      => __( 'Width', 'advanced-toggle' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range'      => [
+					'px' => [
+						'min' => 1,
+						'max' => 10,
+					],
+				],
+				'default'    => [
+					'size' => 1,
+					'unit' => 'px',
+				],
+				'selectors'  => [
+					'{{WRAPPER}} .adv-toggle__item-content' => 'border-top-width: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'separator_style!' => 'none',
+				],
+			]
+		);
+
+		$this->add_control(
+			'separator_color',
+			[
+				'label'     => __( 'Color', 'advanced-toggle' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#e8e8e8',
+				'selectors' => [
+					'{{WRAPPER}} .adv-toggle__item-content' => 'border-top-color: {{VALUE}};',
+				],
+				'condition' => [
+					'separator_style!' => 'none',
 				],
 			]
 		);
