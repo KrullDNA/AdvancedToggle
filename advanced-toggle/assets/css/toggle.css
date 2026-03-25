@@ -109,13 +109,9 @@
 	flex: 1;
 }
 
-/* None mode: no borders anywhere */
+/* None mode: no item borders, separator still controlled independently */
 .adv-toggle--border-none .adv-toggle__item {
 	border: none;
-}
-
-.adv-toggle--border-none .adv-toggle__item-content {
-	border-top: none;
 }
 
 /* Divider mode: no outer border, only a line between items */
