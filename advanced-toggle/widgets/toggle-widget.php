@@ -186,6 +186,58 @@ class Toggle_Widget extends Widget_Base {
 		);
 
 		$this->add_control(
+			'layout',
+			[
+				'type'           => Controls_Manager::CHOOSE,
+				'label'          => __( 'Layout', 'advanced-toggle' ),
+				'default'        => 'vertical',
+				'toggle'         => false,
+				'options'        => [
+					'vertical'   => [
+						'title' => __( 'Vertical', 'advanced-toggle' ),
+						'icon'  => 'eicon-ellipsis-v',
+					],
+					'horizontal' => [
+						'title' => __( 'Horizontal', 'advanced-toggle' ),
+						'icon'  => 'eicon-ellipsis-h',
+					],
+				],
+				'prefix_class'   => 'adv-toggle--layout-',
+				'style_transfer' => true,
+			]
+		);
+
+		$this->add_responsive_control(
+			'title_justify',
+			[
+				'type'         => Controls_Manager::CHOOSE,
+				'label'        => __( 'Titles Alignment', 'advanced-toggle' ),
+				'default'      => 'flex-start',
+				'toggle'       => false,
+				'options'      => [
+					'flex-start'    => [
+						'title' => __( 'Left', 'advanced-toggle' ),
+						'icon'  => 'eicon-h-align-left',
+					],
+					'flex-end'      => [
+						'title' => __( 'Right', 'advanced-toggle' ),
+						'icon'  => 'eicon-h-align-right',
+					],
+					'space-between' => [
+						'title' => __( 'Evenly Spaced', 'advanced-toggle' ),
+						'icon'  => 'eicon-h-align-stretch',
+					],
+				],
+				'selectors'    => [
+					'{{WRAPPER}}.adv-toggle--layout-horizontal .adv-toggle__wrapper' => 'justify-content: {{VALUE}};',
+				],
+				'condition'    => [
+					'layout' => 'horizontal',
+				],
+			]
+		);
+
+		$this->add_control(
 			'closed_icon',
 			[
 				'type'    => Controls_Manager::ICONS,
