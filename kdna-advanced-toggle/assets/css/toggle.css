@@ -1,4 +1,4 @@
-/* KDNA Advanced Toggle Widget Styles — v1.0.3 */
+/* KDNA Advanced Toggle Widget Styles — v1.0.4 */
 .adv-toggle__item-content:after {
 	display: block;
 	clear: both;
@@ -175,4 +175,34 @@
 
 .adv-toggle--layout-horizontal.adv-toggle--titles-right .adv-toggle__nav {
 	justify-content: flex-end;
+}
+
+/* On mobile, revert the horizontal tabs layout back to the standard
+   vertical toggle: titles and their content interleave again. The nav
+   and panels containers are flattened (display: contents) and each
+   title/content is re-ordered using its --adv-i index so item 1's title
+   is followed by item 1's content, then item 2, and so on. */
+@media (max-width: 767px) {
+	.adv-toggle--layout-horizontal .adv-toggle__wrapper {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.adv-toggle--layout-horizontal .adv-toggle__nav,
+	.adv-toggle--layout-horizontal .adv-toggle__panels {
+		display: contents;
+	}
+
+	.adv-toggle--layout-horizontal .adv-toggle__item-title {
+		order: calc(var(--adv-i, 1) * 2 - 1);
+		flex: none;
+		width: 100%;
+		justify-content: flex-start;
+	}
+
+	.adv-toggle--layout-horizontal .adv-toggle__item-content {
+		order: calc(var(--adv-i, 1) * 2);
+		width: 100%;
+	}
 }

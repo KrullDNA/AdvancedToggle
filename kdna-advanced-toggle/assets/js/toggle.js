@@ -33,6 +33,19 @@
 			return this.$element.hasClass("adv-toggle--layout-horizontal");
 		},
 
+		isMobile: function () {
+			return window.innerWidth <= 767;
+		},
+
+		// One-at-a-time only in horizontal layout on non-mobile viewports;
+		// on mobile it reverts to the standard vertical (multi-open) toggle.
+		isOneAtATime: function () {
+			return (
+				this.getSettings("hidePrevious") ||
+				(this.isHorizontal() && !this.isMobile())
+			);
+		},
+
 		activateDefaultTab: function () {
 			var settings = this.getSettings();
 
@@ -137,9 +150,7 @@
 		},
 
 		changeActiveTab: function (tabIndex) {
-			var isActiveTab = this.isActiveTab(tabIndex),
-				hidePrevious =
-					this.getSettings("hidePrevious") || this.isHorizontal();
+			var isActiveTab = this.isActiveTab(tabIndex);
 
 			// Clicking the already-open title closes it.
 			if (isActiveTab) {
@@ -150,7 +161,7 @@
 
 			// Opening a different one: in one-at-a-time mode, close the
 			// currently open one first.
-			if (hidePrevious) {
+			if (this.isOneAtATime()) {
 				this.deactivateActiveTab();
 			}
 

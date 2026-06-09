@@ -864,6 +864,8 @@ class Toggle_Widget extends Widget_Base {
 				'data-tab'      => $count,
 				'role'          => 'tab',
 				'aria-controls' => 'adv-toggle__item-content-' . $id_int . $count,
+				// Per-item index so CSS can re-interleave titles/contents on mobile.
+				'style'         => '--adv-i:' . $count . ';',
 			]
 		);
 
@@ -911,6 +913,8 @@ class Toggle_Widget extends Widget_Base {
 				'data-tab'        => $count,
 				'role'            => 'tabpanel',
 				'aria-labelledby' => 'adv-toggle__item-title-' . $id_int . $count,
+				// Per-item index so CSS can re-interleave titles/contents on mobile.
+				'style'           => '--adv-i:' . $count . ';',
 			]
 		);
 
