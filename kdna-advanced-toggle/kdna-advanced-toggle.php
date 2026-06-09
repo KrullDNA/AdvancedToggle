@@ -44,12 +44,21 @@ final class KDNA_Advanced_Toggle {
 		$widgets_manager->register( new \KDNAToggle\Widgets\Toggle_Widget() );
 	}
 
+	/**
+	 * Cache-busting version: use the file's modification time so updated
+	 * CSS/JS are always re-fetched, falling back to the plugin version.
+	 */
+	private function asset_ver( $relative_path ) {
+		$file = KDNA_TOGGLE_PATH . $relative_path;
+		return file_exists( $file ) ? filemtime( $file ) : KDNA_TOGGLE_VERSION;
+	}
+
 	public function enqueue_frontend_scripts() {
 		wp_enqueue_script(
 			'kdna-toggle-frontend',
 			KDNA_TOGGLE_URL . 'assets/js/toggle.js',
 			[ 'jquery', 'elementor-frontend' ],
-			KDNA_TOGGLE_VERSION,
+			$this->asset_ver( 'assets/js/toggle.js' ),
 			true
 		);
 	}
@@ -59,7 +68,7 @@ final class KDNA_Advanced_Toggle {
 			'kdna-toggle-frontend',
 			KDNA_TOGGLE_URL . 'assets/css/toggle.css',
 			[],
-			KDNA_TOGGLE_VERSION
+			$this->asset_ver( 'assets/css/toggle.css' )
 		);
 	}
 
@@ -68,7 +77,7 @@ final class KDNA_Advanced_Toggle {
 			'kdna-toggle-editor',
 			KDNA_TOGGLE_URL . 'assets/css/editor.css',
 			[],
-			KDNA_TOGGLE_VERSION
+			$this->asset_ver( 'assets/css/editor.css' )
 		);
 	}
 }
