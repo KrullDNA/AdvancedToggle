@@ -138,22 +138,23 @@
 
 		changeActiveTab: function (tabIndex) {
 			var isActiveTab = this.isActiveTab(tabIndex),
-				settings = this.getSettings(),
 				hidePrevious =
-					settings.hidePrevious || this.isHorizontal();
+					this.getSettings("hidePrevious") || this.isHorizontal();
 
-			if ((settings.toggleSelf || !isActiveTab) && hidePrevious) {
+			// Clicking the already-open title closes it.
+			if (isActiveTab) {
+				this.deactivateActiveTab(tabIndex);
+				$(window).trigger("resize");
+				return;
+			}
+
+			// Opening a different one: in one-at-a-time mode, close the
+			// currently open one first.
+			if (hidePrevious) {
 				this.deactivateActiveTab();
 			}
 
-			if (!hidePrevious && isActiveTab) {
-				this.deactivateActiveTab(tabIndex);
-			}
-
-			if (!isActiveTab) {
-				this.activateTab(tabIndex);
-			}
-
+			this.activateTab(tabIndex);
 			$(window).trigger("resize");
 		},
 	});

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: KDNA Advanced Toggle
  * Description: A lightweight Advanced Toggle widget for Elementor with editor and template content support.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: KrullDNA
  * Requires Plugins: elementor
  * Text Domain: kdna-advanced-toggle
@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'KDNA_TOGGLE_VERSION', '1.0.2' );
+define( 'KDNA_TOGGLE_VERSION', '1.0.3' );
 define( 'KDNA_TOGGLE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'KDNA_TOGGLE_URL', plugin_dir_url( __FILE__ ) );
 
