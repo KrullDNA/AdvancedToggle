@@ -1,4 +1,4 @@
-/* Advanced Toggle Widget Styles */
+/* KDNA Advanced Toggle Widget Styles — v1.0.2 */
 .adv-toggle__item-content:after {
 	display: block;
 	clear: both;
@@ -127,6 +127,18 @@
 }
 
 /* Horizontal (tabs) layout: a row of titles, then panels below. */
+
+/* The widget itself must span the full width of its parent, even when it
+   is a flex child of an Elementor container (which otherwise shrinks it to
+   content width). Without this the title row collapses until a panel opens. */
+.elementor-element.adv-toggle--layout-horizontal {
+	width: 100%;
+}
+
+.adv-toggle--layout-horizontal .adv-toggle__wrapper {
+	width: 100%;
+}
+
 .adv-toggle--layout-horizontal .adv-toggle__nav {
 	display: flex;
 	flex-wrap: wrap;
