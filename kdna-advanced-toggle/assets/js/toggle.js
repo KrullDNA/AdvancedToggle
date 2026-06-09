@@ -29,10 +29,13 @@
 			};
 		},
 
+		isHorizontal: function () {
+			return this.$element.hasClass("adv-toggle--layout-horizontal");
+		},
+
 		activateDefaultTab: function () {
 			var settings = this.getSettings();
 
-			// autoExpand: "editor" means only expand in the Elementor editor, not on frontend
 			if (
 				!settings.autoExpand ||
 				("editor" === settings.autoExpand && !this.isEdit)
@@ -47,7 +50,6 @@
 					hideTabFn: settings.hideTabFn,
 				};
 
-			// Toggle tabs without animation to avoid jumping
 			this.setSettings({
 				showTabFn: "show",
 				hideTabFn: "hide",
@@ -55,7 +57,6 @@
 
 			this.changeActiveTab(defaultActiveTab);
 
-			// Return back original toggle effects
 			this.setSettings(originalToggleMethods);
 		},
 
@@ -120,6 +121,12 @@
 				this,
 				arguments
 			);
+
+			// In horizontal mode, ensure all panels are hidden on load.
+			if (this.isHorizontal()) {
+				this.elements.$tabContents.hide();
+			}
+
 			this.activateDefaultTab();
 		},
 
@@ -132,10 +139,8 @@
 		changeActiveTab: function (tabIndex) {
 			var isActiveTab = this.isActiveTab(tabIndex),
 				settings = this.getSettings(),
-				// Horizontal (tabs) layout always behaves as one-open-at-a-time.
 				hidePrevious =
-					settings.hidePrevious ||
-					this.$element.hasClass("adv-toggle--layout-horizontal");
+					settings.hidePrevious || this.isHorizontal();
 
 			if ((settings.toggleSelf || !isActiveTab) && hidePrevious) {
 				this.deactivateActiveTab();

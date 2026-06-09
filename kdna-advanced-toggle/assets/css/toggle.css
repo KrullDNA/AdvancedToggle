@@ -143,17 +143,18 @@
 	width: 100%;
 }
 
-/* Full Width (default): titles stretch to evenly fill the widget,
-   open or closed, so the nav row always spans the full width. */
-.adv-toggle--layout-horizontal.adv-toggle--titles-full .adv-toggle__item-title {
+/* Default: titles stretch to evenly fill the widget. */
+.adv-toggle--layout-horizontal .adv-toggle__item-title {
 	flex: 1 1 0;
 	min-width: 0;
+	text-align: center;
 }
 
 /* Left / Right: content-sized titles grouped to one side. */
 .adv-toggle--layout-horizontal.adv-toggle--titles-left .adv-toggle__item-title,
 .adv-toggle--layout-horizontal.adv-toggle--titles-right .adv-toggle__item-title {
 	flex: 0 0 auto;
+	text-align: left;
 }
 
 .adv-toggle--layout-horizontal.adv-toggle--titles-left .adv-toggle__nav {
