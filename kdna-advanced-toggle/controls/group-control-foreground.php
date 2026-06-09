@@ -1,5 +1,5 @@
 <?php
-namespace AdvancedToggle\Controls;
+namespace KDNAToggle\Controls;
 
 use Elementor\Group_Control_Base;
 use Elementor\Controls_Manager;
@@ -18,17 +18,17 @@ class Group_Control_Foreground extends Group_Control_Base {
 		$fields = [];
 
 		$fields['color_type'] = [
-			'label'       => _x( 'Text Color', 'Background Control', 'advanced-toggle' ),
+			'label'       => _x( 'Text Color', 'Background Control', 'kdna-advanced-toggle' ),
 			'type'        => Controls_Manager::CHOOSE,
 			'label_block' => false,
 			'render_type' => 'ui',
 			'options'     => [
 				'classic'  => [
-					'title' => _x( 'Classic', 'Text Color Control', 'advanced-toggle' ),
+					'title' => _x( 'Classic', 'Text Color Control', 'kdna-advanced-toggle' ),
 					'icon'  => 'eicon-paint-brush',
 				],
 				'gradient' => [
-					'title' => _x( 'Gradient', 'Text Color Control', 'advanced-toggle' ),
+					'title' => _x( 'Gradient', 'Text Color Control', 'kdna-advanced-toggle' ),
 					'icon'  => 'eicon-barcode',
 				],
 			],
@@ -36,10 +36,10 @@ class Group_Control_Foreground extends Group_Control_Base {
 		];
 
 		$fields['color'] = [
-			'label'     => _x( 'Color', 'Background Control', 'advanced-toggle' ),
+			'label'     => _x( 'Color', 'Background Control', 'kdna-advanced-toggle' ),
 			'type'      => Controls_Manager::COLOR,
 			'default'   => '',
-			'title'     => _x( 'Text Color', 'Background Control', 'advanced-toggle' ),
+			'title'     => _x( 'Text Color', 'Background Control', 'kdna-advanced-toggle' ),
 			'selectors' => [
 				'{{SELECTOR}}' => 'color: {{VALUE}};',
 			],
@@ -49,7 +49,7 @@ class Group_Control_Foreground extends Group_Control_Base {
 		];
 
 		$fields['color_stop'] = [
-			'label'       => _x( 'Location', 'Background Control', 'advanced-toggle' ),
+			'label'       => _x( 'Location', 'Background Control', 'kdna-advanced-toggle' ),
 			'type'        => Controls_Manager::SLIDER,
 			'size_units'  => [ '%' ],
 			'default'     => [
@@ -64,7 +64,7 @@ class Group_Control_Foreground extends Group_Control_Base {
 		];
 
 		$fields['color_b'] = [
-			'label'       => _x( 'Second Color', 'Background Control', 'advanced-toggle' ),
+			'label'       => _x( 'Second Color', 'Background Control', 'kdna-advanced-toggle' ),
 			'type'        => Controls_Manager::COLOR,
 			'default'     => '#f2295b',
 			'render_type' => 'ui',
@@ -75,7 +75,7 @@ class Group_Control_Foreground extends Group_Control_Base {
 		];
 
 		$fields['color_b_stop'] = [
-			'label'       => _x( 'Location', 'Background Control', 'advanced-toggle' ),
+			'label'       => _x( 'Location', 'Background Control', 'kdna-advanced-toggle' ),
 			'type'        => Controls_Manager::SLIDER,
 			'size_units'  => [ '%' ],
 			'default'     => [
@@ -90,11 +90,11 @@ class Group_Control_Foreground extends Group_Control_Base {
 		];
 
 		$fields['gradient_type'] = [
-			'label'       => _x( 'Type', 'Background Control', 'advanced-toggle' ),
+			'label'       => _x( 'Type', 'Background Control', 'kdna-advanced-toggle' ),
 			'type'        => Controls_Manager::SELECT,
 			'options'     => [
-				'linear' => _x( 'Linear', 'Background Control', 'advanced-toggle' ),
-				'radial' => _x( 'Radial', 'Background Control', 'advanced-toggle' ),
+				'linear' => _x( 'Linear', 'Background Control', 'kdna-advanced-toggle' ),
+				'radial' => _x( 'Radial', 'Background Control', 'kdna-advanced-toggle' ),
 			],
 			'default'     => 'linear',
 			'render_type' => 'ui',
@@ -105,7 +105,7 @@ class Group_Control_Foreground extends Group_Control_Base {
 		];
 
 		$fields['gradient_angle'] = [
-			'label'      => _x( 'Angle', 'Background Control', 'advanced-toggle' ),
+			'label'      => _x( 'Angle', 'Background Control', 'kdna-advanced-toggle' ),
 			'type'       => Controls_Manager::SLIDER,
 			'size_units' => [ 'deg' ],
 			'default'    => [
@@ -128,18 +128,18 @@ class Group_Control_Foreground extends Group_Control_Base {
 		];
 
 		$fields['gradient_position'] = [
-			'label'     => _x( 'Position', 'Background Control', 'advanced-toggle' ),
+			'label'     => _x( 'Position', 'Background Control', 'kdna-advanced-toggle' ),
 			'type'      => Controls_Manager::SELECT,
 			'options'   => [
-				'center center' => _x( 'Center Center', 'Background Control', 'advanced-toggle' ),
-				'center left'   => _x( 'Center Left', 'Background Control', 'advanced-toggle' ),
-				'center right'  => _x( 'Center Right', 'Background Control', 'advanced-toggle' ),
-				'top center'    => _x( 'Top Center', 'Background Control', 'advanced-toggle' ),
-				'top left'      => _x( 'Top Left', 'Background Control', 'advanced-toggle' ),
-				'top right'     => _x( 'Top Right', 'Background Control', 'advanced-toggle' ),
-				'bottom center' => _x( 'Bottom Center', 'Background Control', 'advanced-toggle' ),
-				'bottom left'   => _x( 'Bottom Left', 'Background Control', 'advanced-toggle' ),
-				'bottom right'  => _x( 'Bottom Right', 'Background Control', 'advanced-toggle' ),
+				'center center' => _x( 'Center Center', 'Background Control', 'kdna-advanced-toggle' ),
+				'center left'   => _x( 'Center Left', 'Background Control', 'kdna-advanced-toggle' ),
+				'center right'  => _x( 'Center Right', 'Background Control', 'kdna-advanced-toggle' ),
+				'top center'    => _x( 'Top Center', 'Background Control', 'kdna-advanced-toggle' ),
+				'top left'      => _x( 'Top Left', 'Background Control', 'kdna-advanced-toggle' ),
+				'top right'     => _x( 'Top Right', 'Background Control', 'kdna-advanced-toggle' ),
+				'bottom center' => _x( 'Bottom Center', 'Background Control', 'kdna-advanced-toggle' ),
+				'bottom left'   => _x( 'Bottom Left', 'Background Control', 'kdna-advanced-toggle' ),
+				'bottom right'  => _x( 'Bottom Right', 'Background Control', 'kdna-advanced-toggle' ),
 			],
 			'default'   => 'center center',
 			'selectors' => [

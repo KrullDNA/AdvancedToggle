@@ -1,5 +1,5 @@
 <?php
-namespace AdvancedToggle\Widgets;
+namespace KDNAToggle\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -10,18 +10,18 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Repeater;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
-use AdvancedToggle\Controls\Group_Control_Foreground;
+use KDNAToggle\Controls\Group_Control_Foreground;
 
 defined( 'ABSPATH' ) || exit;
 
 class Toggle_Widget extends Widget_Base {
 
 	public function get_name() {
-		return 'advanced-toggle';
+		return 'kdna-advanced-toggle';
 	}
 
 	public function get_title() {
-		return __( 'Advanced Toggle', 'advanced-toggle' );
+		return __( 'KDNA Advanced Toggle', 'kdna-advanced-toggle' );
 	}
 
 	public function get_icon() {
@@ -37,11 +37,11 @@ class Toggle_Widget extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return [ 'advanced-toggle-frontend' ];
+		return [ 'kdna-toggle-frontend' ];
 	}
 
 	public function get_script_depends() {
-		return [ 'advanced-toggle-frontend' ];
+		return [ 'kdna-toggle-frontend' ];
 	}
 
 	/**
@@ -84,7 +84,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'_section_toggle',
 			[
-				'label' => __( 'Toggle', 'advanced-toggle' ),
+				'label' => __( 'Toggle', 'kdna-advanced-toggle' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -95,9 +95,9 @@ class Toggle_Widget extends Widget_Base {
 			'title',
 			[
 				'type'        => Controls_Manager::TEXT,
-				'label'       => __( 'Title', 'advanced-toggle' ),
-				'default'     => __( 'Toggle Title', 'advanced-toggle' ),
-				'placeholder' => __( 'Type Toggle Title', 'advanced-toggle' ),
+				'label'       => __( 'Title', 'kdna-advanced-toggle' ),
+				'default'     => __( 'Toggle Title', 'kdna-advanced-toggle' ),
+				'placeholder' => __( 'Type Toggle Title', 'kdna-advanced-toggle' ),
 				'dynamic'     => [ 'active' => true ],
 			]
 		);
@@ -106,7 +106,7 @@ class Toggle_Widget extends Widget_Base {
 			'icon',
 			[
 				'type'       => Controls_Manager::ICONS,
-				'label'      => __( 'Icon', 'advanced-toggle' ),
+				'label'      => __( 'Icon', 'kdna-advanced-toggle' ),
 				'show_label' => false,
 			]
 		);
@@ -115,12 +115,12 @@ class Toggle_Widget extends Widget_Base {
 			'source',
 			[
 				'type'      => Controls_Manager::SELECT,
-				'label'     => __( 'Content Source', 'advanced-toggle' ),
+				'label'     => __( 'Content Source', 'kdna-advanced-toggle' ),
 				'default'   => 'editor',
 				'separator' => 'before',
 				'options'   => [
-					'editor'   => __( 'Editor', 'advanced-toggle' ),
-					'template' => __( 'Template', 'advanced-toggle' ),
+					'editor'   => __( 'Editor', 'kdna-advanced-toggle' ),
+					'template' => __( 'Template', 'kdna-advanced-toggle' ),
 				],
 			]
 		);
@@ -128,7 +128,7 @@ class Toggle_Widget extends Widget_Base {
 		$repeater->add_control(
 			'editor',
 			[
-				'label'      => __( 'Content Editor', 'advanced-toggle' ),
+				'label'      => __( 'Content Editor', 'kdna-advanced-toggle' ),
 				'show_label' => false,
 				'type'       => Controls_Manager::WYSIWYG,
 				'condition'  => [ 'source' => 'editor' ],
@@ -139,10 +139,10 @@ class Toggle_Widget extends Widget_Base {
 		$repeater->add_control(
 			'template',
 			[
-				'label'       => __( 'Section Template', 'advanced-toggle' ),
-				'placeholder' => __( 'Select a section template for tab content', 'advanced-toggle' ),
+				'label'       => __( 'Section Template', 'kdna-advanced-toggle' ),
+				'placeholder' => __( 'Select a section template for tab content', 'kdna-advanced-toggle' ),
 				'description' => sprintf(
-					__( 'Need to create a section template? Click %1$shere%2$s', 'advanced-toggle' ),
+					__( 'Need to create a section template? Click %1$shere%2$s', 'kdna-advanced-toggle' ),
 					'<a target="_blank" href="' . esc_url( admin_url( '/edit.php?post_type=elementor_library&tabs_group=library&elementor_library_type=section' ) ) . '">',
 					'</a>'
 				),
@@ -181,7 +181,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'_section_options',
 			[
-				'label' => __( 'Options', 'advanced-toggle' ),
+				'label' => __( 'Options', 'kdna-advanced-toggle' ),
 			]
 		);
 
@@ -189,16 +189,16 @@ class Toggle_Widget extends Widget_Base {
 			'layout',
 			[
 				'type'           => Controls_Manager::CHOOSE,
-				'label'          => __( 'Layout', 'advanced-toggle' ),
+				'label'          => __( 'Layout', 'kdna-advanced-toggle' ),
 				'default'        => 'vertical',
 				'toggle'         => false,
 				'options'        => [
 					'vertical'   => [
-						'title' => __( 'Vertical', 'advanced-toggle' ),
+						'title' => __( 'Vertical', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-ellipsis-v',
 					],
 					'horizontal' => [
-						'title' => __( 'Horizontal', 'advanced-toggle' ),
+						'title' => __( 'Horizontal', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-ellipsis-h',
 					],
 				],
@@ -211,20 +211,20 @@ class Toggle_Widget extends Widget_Base {
 			'title_justify',
 			[
 				'type'         => Controls_Manager::CHOOSE,
-				'label'        => __( 'Titles Alignment', 'advanced-toggle' ),
+				'label'        => __( 'Titles Alignment', 'kdna-advanced-toggle' ),
 				'default'      => 'flex-start',
 				'toggle'       => false,
 				'options'      => [
 					'flex-start'    => [
-						'title' => __( 'Left', 'advanced-toggle' ),
+						'title' => __( 'Left', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-left',
 					],
 					'flex-end'      => [
-						'title' => __( 'Right', 'advanced-toggle' ),
+						'title' => __( 'Right', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-right',
 					],
 					'space-between' => [
-						'title' => __( 'Evenly Spaced', 'advanced-toggle' ),
+						'title' => __( 'Evenly Spaced', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-stretch',
 					],
 				],
@@ -241,7 +241,7 @@ class Toggle_Widget extends Widget_Base {
 			'closed_icon',
 			[
 				'type'    => Controls_Manager::ICONS,
-				'label'   => __( 'Closed Icon', 'advanced-toggle' ),
+				'label'   => __( 'Closed Icon', 'kdna-advanced-toggle' ),
 				'default' => [
 					'library' => 'solid',
 					'value'   => 'fas fa-plus',
@@ -253,7 +253,7 @@ class Toggle_Widget extends Widget_Base {
 			'opened_icon',
 			[
 				'type'    => Controls_Manager::ICONS,
-				'label'   => __( 'Opened Icon', 'advanced-toggle' ),
+				'label'   => __( 'Opened Icon', 'kdna-advanced-toggle' ),
 				'default' => [
 					'library' => 'solid',
 					'value'   => 'fas fa-minus',
@@ -265,16 +265,16 @@ class Toggle_Widget extends Widget_Base {
 			'icon_position',
 			[
 				'type'           => Controls_Manager::CHOOSE,
-				'label'          => __( 'Position', 'advanced-toggle' ),
+				'label'          => __( 'Position', 'kdna-advanced-toggle' ),
 				'default'        => 'left',
 				'toggle'         => false,
 				'options'        => [
 					'left'  => [
-						'title' => __( 'Left', 'advanced-toggle' ),
+						'title' => __( 'Left', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-left',
 					],
 					'right' => [
-						'title' => __( 'Right', 'advanced-toggle' ),
+						'title' => __( 'Right', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-right',
 					],
 				],
@@ -299,7 +299,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'_section_item',
 			[
-				'label' => __( 'Item', 'advanced-toggle' ),
+				'label' => __( 'Item', 'kdna-advanced-toggle' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -307,7 +307,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'item_spacing',
 			[
-				'label'     => __( 'Vertical Spacing (px)', 'advanced-toggle' ),
+				'label'     => __( 'Vertical Spacing (px)', 'kdna-advanced-toggle' ),
 				'type'      => Controls_Manager::NUMBER,
 				'step'      => 'any',
 				'default'   => -1,
@@ -320,17 +320,17 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'item_border_type',
 			[
-				'label'   => __( 'Border Type', 'advanced-toggle' ),
+				'label'   => __( 'Border Type', 'kdna-advanced-toggle' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'solid',
 				'options' => [
-					'none'    => __( 'None', 'advanced-toggle' ),
-					'divider' => __( 'Divider Only', 'advanced-toggle' ),
-					'solid'   => __( 'Solid', 'advanced-toggle' ),
-					'double'  => __( 'Double', 'advanced-toggle' ),
-					'dotted'  => __( 'Dotted', 'advanced-toggle' ),
-					'dashed'  => __( 'Dashed', 'advanced-toggle' ),
-					'groove'  => __( 'Groove', 'advanced-toggle' ),
+					'none'    => __( 'None', 'kdna-advanced-toggle' ),
+					'divider' => __( 'Divider Only', 'kdna-advanced-toggle' ),
+					'solid'   => __( 'Solid', 'kdna-advanced-toggle' ),
+					'double'  => __( 'Double', 'kdna-advanced-toggle' ),
+					'dotted'  => __( 'Dotted', 'kdna-advanced-toggle' ),
+					'dashed'  => __( 'Dashed', 'kdna-advanced-toggle' ),
+					'groove'  => __( 'Groove', 'kdna-advanced-toggle' ),
 				],
 				'prefix_class' => 'adv-toggle--border-',
 				'render_type'  => 'template',
@@ -340,7 +340,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'item_border_width',
 			[
-				'label'      => __( 'Border Width', 'advanced-toggle' ),
+				'label'      => __( 'Border Width', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px' ],
 				'selectors'  => [
@@ -355,7 +355,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'item_border_color',
 			[
-				'label'     => __( 'Border Color', 'advanced-toggle' ),
+				'label'     => __( 'Border Color', 'kdna-advanced-toggle' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .adv-toggle__item' => 'border-color: {{VALUE}};',
@@ -369,14 +369,14 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'divider_style',
 			[
-				'label'   => __( 'Divider Style', 'advanced-toggle' ),
+				'label'   => __( 'Divider Style', 'kdna-advanced-toggle' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'solid',
 				'options' => [
-					'solid'  => __( 'Solid', 'advanced-toggle' ),
-					'double' => __( 'Double', 'advanced-toggle' ),
-					'dotted' => __( 'Dotted', 'advanced-toggle' ),
-					'dashed' => __( 'Dashed', 'advanced-toggle' ),
+					'solid'  => __( 'Solid', 'kdna-advanced-toggle' ),
+					'double' => __( 'Double', 'kdna-advanced-toggle' ),
+					'dotted' => __( 'Dotted', 'kdna-advanced-toggle' ),
+					'dashed' => __( 'Dashed', 'kdna-advanced-toggle' ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .adv-toggle__item:not(:first-child)' => 'border-top-style: {{VALUE}};',
@@ -390,7 +390,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'divider_width',
 			[
-				'label'      => __( 'Divider Width', 'advanced-toggle' ),
+				'label'      => __( 'Divider Width', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range'      => [
@@ -415,7 +415,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'divider_color',
 			[
-				'label'     => __( 'Divider Color', 'advanced-toggle' ),
+				'label'     => __( 'Divider Color', 'kdna-advanced-toggle' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#e8e8e8',
 				'selectors' => [
@@ -430,7 +430,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'item_border_radius',
 			[
-				'label'      => __( 'Border Radius', 'advanced-toggle' ),
+				'label'      => __( 'Border Radius', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
@@ -443,7 +443,7 @@ class Toggle_Widget extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name'     => 'item_box_shadow',
-				'label'    => __( 'Box Shadow', 'advanced-toggle' ),
+				'label'    => __( 'Box Shadow', 'kdna-advanced-toggle' ),
 				'selector' => '{{WRAPPER}} .adv-toggle__item',
 			]
 		);
@@ -455,7 +455,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'_section_title',
 			[
-				'label' => __( 'Title', 'advanced-toggle' ),
+				'label' => __( 'Title', 'kdna-advanced-toggle' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -463,7 +463,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_responsive_control(
 			'title_padding',
 			[
-				'label'      => __( 'Padding', 'advanced-toggle' ),
+				'label'      => __( 'Padding', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [
@@ -487,7 +487,7 @@ class Toggle_Widget extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name'     => 'title_text_shadow',
-				'label'    => __( 'Text Shadow', 'advanced-toggle' ),
+				'label'    => __( 'Text Shadow', 'kdna-advanced-toggle' ),
 				'selector' => '{{WRAPPER}} .adv-toggle__item-title',
 			]
 		);
@@ -498,14 +498,14 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_tab(
 			'_tab_tab_normal',
 			[
-				'label' => __( 'Normal', 'advanced-toggle' ),
+				'label' => __( 'Normal', 'kdna-advanced-toggle' ),
 			]
 		);
 
 		$this->add_control(
 			'title_border_radius',
 			[
-				'label'      => __( 'Border Radius', 'advanced-toggle' ),
+				'label'      => __( 'Border Radius', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
@@ -538,14 +538,14 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_tab(
 			'_tab_tab_active',
 			[
-				'label' => __( 'Active', 'advanced-toggle' ),
+				'label' => __( 'Active', 'kdna-advanced-toggle' ),
 			]
 		);
 
 		$this->add_control(
 			'title_active_border_radius',
 			[
-				'label'      => __( 'Border Radius', 'advanced-toggle' ),
+				'label'      => __( 'Border Radius', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
@@ -582,7 +582,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'_section_title_icon',
 			[
-				'label' => __( 'Title Icon', 'advanced-toggle' ),
+				'label' => __( 'Title Icon', 'kdna-advanced-toggle' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -590,7 +590,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_responsive_control(
 			'title_icon_size',
 			[
-				'label'      => __( 'Size', 'advanced-toggle' ),
+				'label'      => __( 'Size', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em' ],
 				'range'      => [
@@ -614,7 +614,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'title_icon_spacing',
 			[
-				'label'      => __( 'Spacing', 'advanced-toggle' ),
+				'label'      => __( 'Spacing', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'selectors'  => [
@@ -630,7 +630,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'_section_separator',
 			[
-				'label' => __( 'Title / Content Separator', 'advanced-toggle' ),
+				'label' => __( 'Title / Content Separator', 'kdna-advanced-toggle' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -638,15 +638,15 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'separator_style',
 			[
-				'label'   => __( 'Style', 'advanced-toggle' ),
+				'label'   => __( 'Style', 'kdna-advanced-toggle' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'solid',
 				'options' => [
-					'none'   => __( 'None', 'advanced-toggle' ),
-					'solid'  => __( 'Solid', 'advanced-toggle' ),
-					'double' => __( 'Double', 'advanced-toggle' ),
-					'dotted' => __( 'Dotted', 'advanced-toggle' ),
-					'dashed' => __( 'Dashed', 'advanced-toggle' ),
+					'none'   => __( 'None', 'kdna-advanced-toggle' ),
+					'solid'  => __( 'Solid', 'kdna-advanced-toggle' ),
+					'double' => __( 'Double', 'kdna-advanced-toggle' ),
+					'dotted' => __( 'Dotted', 'kdna-advanced-toggle' ),
+					'dashed' => __( 'Dashed', 'kdna-advanced-toggle' ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .adv-toggle__item-content' => 'border-top-style: {{VALUE}};',
@@ -657,7 +657,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'separator_width',
 			[
-				'label'      => __( 'Width', 'advanced-toggle' ),
+				'label'      => __( 'Width', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'range'      => [
@@ -682,7 +682,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'separator_color',
 			[
-				'label'     => __( 'Color', 'advanced-toggle' ),
+				'label'     => __( 'Color', 'kdna-advanced-toggle' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#e8e8e8',
 				'selectors' => [
@@ -701,7 +701,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'_section_content',
 			[
-				'label' => __( 'Content', 'advanced-toggle' ),
+				'label' => __( 'Content', 'kdna-advanced-toggle' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -709,7 +709,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_responsive_control(
 			'content_padding',
 			[
-				'label'      => __( 'Padding', 'advanced-toggle' ),
+				'label'      => __( 'Padding', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [
@@ -722,7 +722,7 @@ class Toggle_Widget extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name'     => 'content_border',
-				'label'    => __( 'Border', 'advanced-toggle' ),
+				'label'    => __( 'Border', 'kdna-advanced-toggle' ),
 				'selector' => '{{WRAPPER}} .adv-toggle__item-content',
 			]
 		);
@@ -730,7 +730,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'content_border_radius',
 			[
-				'label'      => __( 'Border Radius', 'advanced-toggle' ),
+				'label'      => __( 'Border Radius', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
@@ -753,7 +753,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'content_color',
 			[
-				'label'     => __( 'Color', 'advanced-toggle' ),
+				'label'     => __( 'Color', 'kdna-advanced-toggle' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .adv-toggle__item-content' => 'color: {{VALUE}};',
@@ -777,7 +777,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->start_controls_section(
 			'_section_icon',
 			[
-				'label' => __( 'Open / Close Icon', 'advanced-toggle' ),
+				'label' => __( 'Open / Close Icon', 'kdna-advanced-toggle' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -785,7 +785,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_responsive_control(
 			'nav_icon_size',
 			[
-				'label'      => __( 'Size', 'advanced-toggle' ),
+				'label'      => __( 'Size', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em' ],
 				'range'      => [
@@ -809,7 +809,7 @@ class Toggle_Widget extends Widget_Base {
 		$this->add_control(
 			'nav_icon_spacing',
 			[
-				'label'      => __( 'Spacing', 'advanced-toggle' ),
+				'label'      => __( 'Spacing', 'kdna-advanced-toggle' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => [ 'px' ],
 				'selectors'  => [
