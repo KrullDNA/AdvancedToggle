@@ -125,3 +125,23 @@
 	border-top-width: 1px;
 	border-top-color: #e8e8e8;
 }
+
+/* Horizontal (tabs) layout: titles in a row, active content full-width below */
+.adv-toggle--layout-horizontal .adv-toggle__wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.adv-toggle--layout-horizontal .adv-toggle__item {
+	display: contents;
+}
+
+.adv-toggle--layout-horizontal .adv-toggle__item:not(:first-child) {
+	margin-top: 0;
+}
+
+.adv-toggle--layout-horizontal .adv-toggle__item-content {
+	order: 1;
+	width: 100%;
+	flex-basis: 100%;
+}

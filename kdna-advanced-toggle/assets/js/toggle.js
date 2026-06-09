@@ -154,7 +154,7 @@
 
 	$(window).on("elementor/frontend/init", function () {
 		elementorFrontend.hooks.addAction(
-			"frontend/element_ready/advanced-toggle.default",
+			"frontend/element_ready/kdna-advanced-toggle.default",
 			function ($scope) {
 				elementorFrontend.elementsHandler.addHandler(
 					AdvToggleHandler,
