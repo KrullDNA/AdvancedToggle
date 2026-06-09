@@ -131,16 +131,17 @@
 
 		changeActiveTab: function (tabIndex) {
 			var isActiveTab = this.isActiveTab(tabIndex),
-				settings = this.getSettings();
+				settings = this.getSettings(),
+				// Horizontal (tabs) layout always behaves as one-open-at-a-time.
+				hidePrevious =
+					settings.hidePrevious ||
+					this.$element.hasClass("adv-toggle--layout-horizontal");
 
-			if (
-				(settings.toggleSelf || !isActiveTab) &&
-				settings.hidePrevious
-			) {
+			if ((settings.toggleSelf || !isActiveTab) && hidePrevious) {
 				this.deactivateActiveTab();
 			}
 
-			if (!settings.hidePrevious && isActiveTab) {
+			if (!hidePrevious && isActiveTab) {
 				this.deactivateActiveTab(tabIndex);
 			}
 

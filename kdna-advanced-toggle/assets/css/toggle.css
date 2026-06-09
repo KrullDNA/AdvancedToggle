@@ -130,6 +130,7 @@
 .adv-toggle--layout-horizontal .adv-toggle__wrapper {
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
 }
 
 .adv-toggle--layout-horizontal .adv-toggle__item {
@@ -144,4 +145,25 @@
 	order: 1;
 	width: 100%;
 	flex-basis: 100%;
+}
+
+/* Full Width (default): titles stretch to evenly fill the widget,
+   open or closed, so the row always spans the full width. */
+.adv-toggle--layout-horizontal.adv-toggle--titles-full .adv-toggle__item-title {
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+/* Left / Right: content-sized titles grouped to one side. */
+.adv-toggle--layout-horizontal.adv-toggle--titles-left .adv-toggle__item-title,
+.adv-toggle--layout-horizontal.adv-toggle--titles-right .adv-toggle__item-title {
+	flex: 0 0 auto;
+}
+
+.adv-toggle--layout-horizontal.adv-toggle--titles-left .adv-toggle__wrapper {
+	justify-content: flex-start;
+}
+
+.adv-toggle--layout-horizontal.adv-toggle--titles-right .adv-toggle__wrapper {
+	justify-content: flex-end;
 }
