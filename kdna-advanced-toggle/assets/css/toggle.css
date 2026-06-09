@@ -126,29 +126,25 @@
 	border-top-color: #e8e8e8;
 }
 
-/* Horizontal (tabs) layout: titles in a row, active content full-width below */
-.adv-toggle--layout-horizontal .adv-toggle__wrapper {
+/* Horizontal (tabs) layout: a row of titles, then panels below. */
+.adv-toggle--layout-horizontal .adv-toggle__nav {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
+	gap: 10px;
 }
 
-.adv-toggle--layout-horizontal .adv-toggle__item {
-	display: contents;
-}
-
-.adv-toggle--layout-horizontal .adv-toggle__item:not(:first-child) {
-	margin-top: 0;
+/* Panels always span the full widget width; active one shows below. */
+.adv-toggle--layout-horizontal .adv-toggle__panels {
+	width: 100%;
 }
 
 .adv-toggle--layout-horizontal .adv-toggle__item-content {
-	order: 1;
 	width: 100%;
-	flex-basis: 100%;
 }
 
 /* Full Width (default): titles stretch to evenly fill the widget,
-   open or closed, so the row always spans the full width. */
+   open or closed, so the nav row always spans the full width. */
 .adv-toggle--layout-horizontal.adv-toggle--titles-full .adv-toggle__item-title {
 	flex: 1 1 0;
 	min-width: 0;
@@ -160,10 +156,10 @@
 	flex: 0 0 auto;
 }
 
-.adv-toggle--layout-horizontal.adv-toggle--titles-left .adv-toggle__wrapper {
+.adv-toggle--layout-horizontal.adv-toggle--titles-left .adv-toggle__nav {
 	justify-content: flex-start;
 }
 
-.adv-toggle--layout-horizontal.adv-toggle--titles-right .adv-toggle__wrapper {
+.adv-toggle--layout-horizontal.adv-toggle--titles-right .adv-toggle__nav {
 	justify-content: flex-end;
 }

@@ -237,6 +237,31 @@ class Toggle_Widget extends Widget_Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'title_gap',
+			[
+				'label'      => __( 'Space Between Titles', 'kdna-advanced-toggle' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range'      => [
+					'px' => [
+						'min' => 0,
+						'max' => 80,
+					],
+				],
+				'default'    => [
+					'size' => 10,
+					'unit' => 'px',
+				],
+				'selectors'  => [
+					'{{WRAPPER}}.adv-toggle--layout-horizontal .adv-toggle__nav' => 'gap: {{SIZE}}{{UNIT}};',
+				],
+				'condition'  => [
+					'layout' => 'horizontal',
+				],
+			]
+		);
+
 		$this->add_control(
 			'closed_icon',
 			[
@@ -822,6 +847,88 @@ class Toggle_Widget extends Widget_Base {
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Build the title (tab) markup for a single item.
+	 */
+	protected function get_title_markup( $settings, $item, $index, $id_int, $has_closed_icon, $has_opened_icon ) {
+		$count = $index + 1;
+
+		$title_setting_key = $this->get_repeater_setting_key( 'title', 'tabs', $index );
+		$has_title_icon    = ( ! empty( $item['icon'] ) && ! empty( $item['icon']['value'] ) );
+
+		$this->add_render_attribute(
+			$title_setting_key,
+			[
+				'id'            => 'adv-toggle__item-title-' . $id_int . $count,
+				'class'         => [ 'adv-toggle__item-title' ],
+				'data-tab'      => $count,
+				'role'          => 'tab',
+				'aria-controls' => 'adv-toggle__item-content-' . $id_int . $count,
+			]
+		);
+
+		ob_start();
+		?>
+		<div <?php $this->print_render_attribute_string( $title_setting_key ); ?>>
+			<?php if ( $has_opened_icon || $has_closed_icon ) : ?>
+				<span class="adv-toggle__item-icon adv-toggle__icon" aria-hidden="true">
+					<?php if ( $has_closed_icon ) : ?>
+						<span class="adv-toggle__icon--closed"><?php \Elementor\Icons_Manager::render_icon( $settings['closed_icon'] ); ?></span>
+					<?php endif; ?>
+					<?php if ( $has_opened_icon ) : ?>
+						<span class="adv-toggle__icon--opened"><?php \Elementor\Icons_Manager::render_icon( $settings['opened_icon'] ); ?></span>
+					<?php endif; ?>
+				</span>
+			<?php endif; ?>
+			<div class="adv-toggle__item-title-inner">
+				<?php if ( $has_title_icon ) : ?>
+					<span class="adv-toggle__item-title-icon"><?php \Elementor\Icons_Manager::render_icon( $item['icon'] ); ?></span>
+				<?php endif; ?>
+				<span class="adv-toggle__item-title-text"><?php echo wp_kses_post( $item['title'] ); ?></span>
+			</div>
+		</div>
+		<?php
+		return ob_get_clean();
+	}
+
+	/**
+	 * Build the content (panel) markup for a single item.
+	 */
+	protected function get_content_markup( $item, $index, $id_int ) {
+		$count = $index + 1;
+
+		if ( $item['source'] === 'editor' ) {
+			$content_setting_key = $this->get_repeater_setting_key( 'editor', 'tabs', $index );
+		} else {
+			$content_setting_key = $this->get_repeater_setting_key( 'section', 'tabs', $index );
+		}
+
+		$this->add_render_attribute(
+			$content_setting_key,
+			[
+				'id'              => 'adv-toggle__item-content-' . $id_int . $count,
+				'class'           => [ 'adv-toggle__item-content' ],
+				'data-tab'        => $count,
+				'role'            => 'tabpanel',
+				'aria-labelledby' => 'adv-toggle__item-title-' . $id_int . $count,
+			]
+		);
+
+		ob_start();
+		?>
+		<div <?php $this->print_render_attribute_string( $content_setting_key ); ?>>
+			<?php
+			if ( $item['source'] === 'editor' ) :
+				echo $this->parse_text_editor( $item['editor'] );
+			elseif ( $item['source'] === 'template' && ! empty( $item['template'] ) ) :
+				echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $item['template'] );
+			endif;
+			?>
+		</div>
+		<?php
+		return ob_get_clean();
+	}
+
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
@@ -832,75 +939,42 @@ class Toggle_Widget extends Widget_Base {
 		$has_closed_icon = ( ! empty( $settings['closed_icon'] ) && ! empty( $settings['closed_icon']['value'] ) );
 		$has_opened_icon = ( ! empty( $settings['opened_icon'] ) && ! empty( $settings['opened_icon']['value'] ) );
 
-		$id_int = substr( $this->get_id_int(), 0, 3 );
-		?>
-		<div class="adv-toggle__wrapper" role="tablist">
+		$id_int       = substr( $this->get_id_int(), 0, 3 );
+		$is_horizontal = ( isset( $settings['layout'] ) && 'horizontal' === $settings['layout'] );
+
+		$titles   = [];
+		$contents = [];
+		foreach ( $settings['tabs'] as $index => $item ) {
+			$titles[]   = $this->get_title_markup( $settings, $item, $index, $id_int, $has_closed_icon, $has_opened_icon );
+			$contents[] = $this->get_content_markup( $item, $index, $id_int );
+		}
+
+		if ( $is_horizontal ) :
+			// Tabs structure: a row of titles, then the panels below (active one full-width).
+			?>
+			<div class="adv-toggle__wrapper" role="tablist">
+				<div class="adv-toggle__nav">
+					<?php echo implode( '', $titles ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				</div>
+				<div class="adv-toggle__panels">
+					<?php echo implode( '', $contents ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+				</div>
+			</div>
 			<?php
-			foreach ( $settings['tabs'] as $index => $item ) :
-				$count = $index + 1;
-
-				$title_setting_key = $this->get_repeater_setting_key( 'title', 'tabs', $index );
-				$has_title_icon    = ( ! empty( $item['icon'] ) && ! empty( $item['icon']['value'] ) );
-
-				if ( $item['source'] === 'editor' ) {
-					$content_setting_key = $this->get_repeater_setting_key( 'editor', 'tabs', $index );
-				} else {
-					$content_setting_key = $this->get_repeater_setting_key( 'section', 'tabs', $index );
-				}
-
-				$this->add_render_attribute(
-					$title_setting_key,
-					[
-						'id'            => 'adv-toggle__item-title-' . $id_int . $count,
-						'class'         => [ 'adv-toggle__item-title' ],
-						'data-tab'      => $count,
-						'role'          => 'tab',
-						'aria-controls' => 'adv-toggle__item-content-' . $id_int . $count,
-					]
-				);
-
-				$this->add_render_attribute(
-					$content_setting_key,
-					[
-						'id'              => 'adv-toggle__item-content-' . $id_int . $count,
-						'class'           => [ 'adv-toggle__item-content' ],
-						'data-tab'        => $count,
-						'role'            => 'tabpanel',
-						'aria-labelledby' => 'adv-toggle__item-title-' . $id_int . $count,
-					]
-				);
-				?>
-				<div class="adv-toggle__item">
-					<div <?php $this->print_render_attribute_string( $title_setting_key ); ?>>
-						<?php if ( $has_opened_icon || $has_closed_icon ) : ?>
-							<span class="adv-toggle__item-icon adv-toggle__icon" aria-hidden="true">
-								<?php if ( $has_closed_icon ) : ?>
-									<span class="adv-toggle__icon--closed"><?php \Elementor\Icons_Manager::render_icon( $settings['closed_icon'] ); ?></span>
-								<?php endif; ?>
-								<?php if ( $has_opened_icon ) : ?>
-									<span class="adv-toggle__icon--opened"><?php \Elementor\Icons_Manager::render_icon( $settings['opened_icon'] ); ?></span>
-								<?php endif; ?>
-							</span>
-						<?php endif; ?>
-						<div class="adv-toggle__item-title-inner">
-							<?php if ( $has_title_icon ) : ?>
-								<span class="adv-toggle__item-title-icon"><?php \Elementor\Icons_Manager::render_icon( $item['icon'] ); ?></span>
-							<?php endif; ?>
-							<span class="adv-toggle__item-title-text"><?php echo wp_kses_post( $item['title'] ); ?></span>
-						</div>
-					</div>
-					<div <?php $this->print_render_attribute_string( $content_setting_key ); ?>>
+		else :
+			// Vertical accordion: interleaved title + content per item.
+			?>
+			<div class="adv-toggle__wrapper" role="tablist">
+				<?php foreach ( $titles as $i => $title_html ) : ?>
+					<div class="adv-toggle__item">
 						<?php
-						if ( $item['source'] === 'editor' ) :
-							echo $this->parse_text_editor( $item['editor'] );
-						elseif ( $item['source'] === 'template' && ! empty( $item['template'] ) ) :
-							echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $item['template'] );
-						endif;
+						echo $title_html;    // phpcs:ignore WordPress.Security.EscapeOutput
+						echo $contents[ $i ]; // phpcs:ignore WordPress.Security.EscapeOutput
 						?>
 					</div>
-				</div>
-			<?php endforeach; ?>
-		</div>
-		<?php
+				<?php endforeach; ?>
+			</div>
+			<?php
+		endif;
 	}
 }
