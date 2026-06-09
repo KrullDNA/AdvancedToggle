@@ -223,7 +223,7 @@ class Toggle_Widget extends Widget_Base {
 						'title' => __( 'Right', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-right',
 					],
-					'space-between' => [
+					'space-evenly' => [
 						'title' => __( 'Evenly Spaced', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-stretch',
 					],
