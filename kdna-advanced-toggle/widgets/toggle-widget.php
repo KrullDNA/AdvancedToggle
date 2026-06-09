@@ -207,31 +207,31 @@ class Toggle_Widget extends Widget_Base {
 			]
 		);
 
-		$this->add_responsive_control(
+		$this->add_control(
 			'title_justify',
 			[
-				'type'         => Controls_Manager::CHOOSE,
-				'label'        => __( 'Titles Alignment', 'kdna-advanced-toggle' ),
-				'default'      => 'flex-start',
-				'toggle'       => false,
-				'options'      => [
-					'flex-start'    => [
+				'type'           => Controls_Manager::CHOOSE,
+				'label'          => __( 'Titles Alignment', 'kdna-advanced-toggle' ),
+				'default'        => 'full',
+				'toggle'         => false,
+				'options'        => [
+					'left'  => [
 						'title' => __( 'Left', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-left',
 					],
-					'flex-end'      => [
+					'right' => [
 						'title' => __( 'Right', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-right',
 					],
-					'space-evenly' => [
-						'title' => __( 'Evenly Spaced', 'kdna-advanced-toggle' ),
+					'full'  => [
+						'title' => __( 'Full Width', 'kdna-advanced-toggle' ),
 						'icon'  => 'eicon-h-align-stretch',
 					],
 				],
-				'selectors'    => [
-					'{{WRAPPER}}.adv-toggle--layout-horizontal .adv-toggle__wrapper' => 'justify-content: {{VALUE}};',
-				],
-				'condition'    => [
+				'description'    => __( 'Full Width stretches the titles to evenly fill the widget. Left / Right group content-sized titles to that side.', 'kdna-advanced-toggle' ),
+				'prefix_class'   => 'adv-toggle--titles-',
+				'style_transfer' => true,
+				'condition'      => [
 					'layout' => 'horizontal',
 				],
 			]
