@@ -147,14 +147,14 @@
 .adv-toggle--layout-horizontal .adv-toggle__item-title {
 	flex: 1 1 0;
 	min-width: 0;
-	text-align: center;
+	justify-content: center;
 }
 
 /* Left / Right: content-sized titles grouped to one side. */
 .adv-toggle--layout-horizontal.adv-toggle--titles-left .adv-toggle__item-title,
 .adv-toggle--layout-horizontal.adv-toggle--titles-right .adv-toggle__item-title {
 	flex: 0 0 auto;
-	text-align: left;
+	justify-content: flex-start;
 }
 
 .adv-toggle--layout-horizontal.adv-toggle--titles-left .adv-toggle__nav {
